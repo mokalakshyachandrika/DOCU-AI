@@ -20,7 +20,8 @@ async def on_startup():
     await init_db()
 
 origins = [
-    "http://localhost:3000"
+    #"http://localhost:3000",
+    "https://docu-ai-1-f4re.onrender.com"
 ]
 
 app.add_middleware(
