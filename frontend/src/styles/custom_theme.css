@@ -1,0 +1,146 @@
+
+/* Forced palette backgrounds using only: #A8BBA3, #B87C4C, #C4A484, #F7F1DE */
+/* Purpose: ensure body and major panels use palette combinations that are aesthetic and consistent. */
+
+:root{
+  --green: #A8BBA3;
+  --rust:  #B87C4C;
+  --tan:   #C4A484;
+  --cream: #F7F1DE;
+  --text:  #2b2b2b;
+  --card:  #ffffff;
+  --radius: 12px;
+  --glass: rgba(255,255,255,0.6);
+}
+
+/* Global reset */
+*{box-sizing:border-box}
+html,body,#root{height:100%; margin:0; padding:0; font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--text);}
+
+/* Body: cream background with a subtle diagonal split using only palette colors */
+body {
+  background-color: var(--cream) !important;
+  background-image: linear-gradient(120deg, rgba(168,187,163,0.06) 0%, rgba(196,164,132,0.04) 30%, rgba(184,124,76,0.02) 60%, rgba(247,241,222,0.00) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Main container */
+.container, .app, #root {
+  padding: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header: soft green band */
+.header, .navbar {
+  /*background: linear-gradient(90deg, var(--green), var(--tan));*/
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(43,43,43,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Primary card: light cream with green top accent */
+.card, .project-card, .box, .paper {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(247,241,222,0.8) 100%);
+  border-radius: var(--radius);
+  padding: 18px;
+  transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease;
+  box-shadow: 0 6px 20px rgba(43,43,43,0.06);
+  border: 1px solid rgba(43,43,43,0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+/* card accent bar */
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--green), var(--rust));
+}
+
+/* Login / Signup panel: use a stronger green/tan combo for focus */
+.auth-panel {
+  background: linear-gradient(180deg, rgba(168,187,163,0.95), rgba(196,164,132,0.92));
+  color: #0f1a13;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(43,43,43,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* If there's a wrapper specific to login page, target typical class names */
+.login-card, .signup-card, .auth-card { 
+  composes: auth-panel;
+}
+
+/* Buttons: primary green, secondary rust */
+.btn, button {
+  background: linear-gradient(180deg, var(--green), var(--tan));
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight:600;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  box-shadow: 0 8px 20px rgba(43,43,43,0.08);
+}
+.btn.secondary {
+  background: linear-gradient(180deg, var(--rust), var(--tan));
+}
+
+/* Inputs: slightly translucent cream */
+input, textarea, select {
+  width:100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(43,43,43,0.06);
+  background: rgba(247,241,222,0.9);
+  color: var(--text);
+  transition: box-shadow 160ms ease, transform 120ms ease;
+}
+input:focus, textarea:focus {
+  outline:none;
+  box-shadow: 0 8px 24px rgba(168,187,163,0.12);
+  transform: translateY(-2px);
+  border-color: var(--green);
+}
+
+/* Headings and accents */
+h1,h2,h3 { margin:0 0 8px 0; font-weight:700; color: #1f2933;}
+.heading-accent{ display:inline-block; padding-bottom:6px; position:relative;}
+.heading-accent::after{ content:''; position:absolute; left:0; bottom:0; height:6px; width:56px; border-radius:6px; background: linear-gradient(90deg, var(--green), var(--rust));}
+
+/* Ensure any previous radial backgrounds are removed */
+* { background-image: none !important; }
+
+/* Ensure full height hero sections use cream with subtle tan overlay */
+.hero, .hero-section {
+  background: linear-gradient(180deg, rgba(247,241,222,1) 0%, rgba(196,164,132,0.06) 100%);
+  padding: 48px;
+  border-radius: 16px;
+}
+
+/* Utility grid */
+.grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+
+/* small text */
+.kv { color: rgba(31,41,51,0.6); font-size:0.95rem; }
+
+/* Images */
+img { max-width:100%; border-radius:8px; display:block; }
+
+/* Responsive */
+@media (max-width:720px){
+  .container { padding: 14px; }
+  .grid { grid-template-columns: 1fr; }
+}
